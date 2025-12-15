@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <title>Himanshu Patidar | Backend Engineer at Tekion</title>
+    <style>
+      :root {
+        --bg: #020617;
+        --bg-alt: #0f172a;
+        --card: #020617;
+        --accent: #38bdf8;
+        --accent-soft: rgba(56, 189, 248, 0.08);
+        --text: #e5e7eb;
+        --muted: #9ca3af;
+        --border: #1f2937;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        background: radial-gradient(circle at top left, #1e293b, #020617 55%);
+        color: var(--text);
+        min-height: 100vh;
+      }
+
+      .page {
+        max-width: 960px;
+        margin: 0 auto;
+        padding: 32px 20px 64px;
+      }
+
+      header {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        margin-bottom: 32px;
+      }
+
+      @media (min-width: 720px) {
+        header {
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: flex-start;
+        }
+      }
+
+      .intro {
+        max-width: 620px;
+      }
+
+      .name {
+        font-size: clamp(2rem, 3vw, 2.6rem);
+        font-weight: 700;
+        letter-spacing: 0.03em;
+      }
+
+      .role {
+        margin-top: 6px;
+        font-size: 1rem;
+        color: var(--muted);
+      }
+
+      .summary {
+        margin-top: 16px;
+        line-height: 1.6;
+        color: var(--muted);
+      }
+
+      nav {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      nav a {
+        text-decoration: none;
+        color: var(--muted);
+        font-size: 0.9rem;
+        padding: 6px 10px;
+        border-radius: 999px;
+        border: 1px solid transparent;
+      }
+
+      nav a:hover {
+        color: var(--accent);
+        border-color: var(--accent-soft);
+        background: var(--accent-soft);
+      }
+
+      main {
+        display: grid;
+        grid-template-columns: minmax(0, 1.8fr) minmax(0, 1.2fr);
+        gap: 24px;
+      }
+
+      @media (max-width: 800px) {
+        main {
+          grid-template-columns: minmax(0, 1fr);
+        }
+      }
+
+      section {
+        margin-bottom: 24px;
+        padding: 18px 18px 16px;
+        border-radius: 16px;
+        border: 1px solid var(--border);
+        background: radial-gradient(circle at top left, rgba(56, 189, 248, 0.07), #020617 55%);
+      }
+
+      section h2 {
+        font-size: 0.95rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 10px;
+      }
+
+      .tagline {
+        font-size: 0.95rem;
+        color: var(--muted);
+      }
+
+      .pill-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-top: 6px;
+      }
+
+      .pill {
+        font-size: 0.8rem;
+        padding: 4px 9px;
+        border-radius: 999px;
+        border: 1px solid var(--border);
+        background: rgba(15, 23, 42, 0.7);
+        color: var(--muted);
+      }
+
+      .pill.highlight {
+        border-color: rgba(56, 189, 248, 0.6);
+        color: var(--accent);
+      }
+
+      .list {
+        list-style: none;
+        display: grid;
+        gap: 8px;
+        margin-top: 8px;
+      }
+
+      .list-item-title {
+        font-size: 0.9rem;
+        font-weight: 600;
+      }
+
+      .list-item-meta {
+        font-size: 0.8rem;
+        color: var(--muted);
+      }
+
+      .list-item-body {
+        font-size: 0.85rem;
+        color: var(--muted);
+        margin-top: 4px;
+      }
+
+      .contact-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 10px;
+      }
+
+      .contact-links a {
+        font-size: 0.85rem;
+        text-decoration: none;
+        padding: 6px 10px;
+        border-radius: 999px;
+        border: 1px solid var(--border);
+        color: var(--text);
+        background: linear-gradient(to right, #0f172a, #020617);
+      }
+
+      .contact-links a:hover {
+        border-color: rgba(56, 189, 248, 0.7);
+        color: var(--accent);
+      }
+
+      footer {
+        margin-top: 32px;
+        font-size: 0.8rem;
+        color: var(--muted);
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class='page'>
+      <header>
+        <div class='intro'>
+          <h1 class='name'>Himanshu Patidar</h1>
+          <p class='role'>Backend Engineer @ Tekion · Building reliable services and APIs</p>
+          <p class='summary'>
+            I design and build backend services with a focus on clean APIs, performance,
+            and observability. I enjoy working on distributed systems, production issues,
+            and helping teams ship backend features with confidence.
+          </p>
+        </div>
+        <nav aria-label='Primary navigation'>
+          <a href='#about'>About</a>
+          <a href='#experience'>Experience</a>
+          <a href='#skills'>Skills</a>
+          <a href='#projects'>Projects</a>
+          <a href='#contact'>Contact</a>
+        </nav>
+      </header>
+
+      <main>
+        <div>
+          <section id='about'>
+            <h2>About</h2>
+            <p class='tagline'>
+              Backend engineer who likes strong foundations more than flashy features.
+            </p>
+            <div class='pill-row'>
+              <span class='pill highlight'>Backend engineering</span>
+              <span class='pill'>Microservices</span>
+              <span class='pill'>APIs & integrations</span>
+              <span class='pill'>Clean code</span>
+              <span class='pill'>Testing & reliability</span>
+            </div>
+          </section>
+
+          <section id='experience'>
+            <h2>Experience</h2>
+            <ul class='list'>
+              <li>
+                <div class='list-item-title'>Backend Engineer · Tekion</div>
+                <div class='list-item-meta'>
+                  Working on backend services that power a modern automotive retail platform.
+                </div>
+                <p class='list-item-body'>
+                  I collaborate with product and other engineering teams to design APIs,
+                  improve service reliability, and keep latency under control. Day to day
+                  work includes backend development, code reviews, debugging production
+                  issues, and improving internal tooling.
+                </p>
+              </li>
+            </ul>
+          </section>
+
+          <section id='projects'>
+            <h2>Projects</h2>
+            <ul class='list'>
+              <li>
+                <div class='list-item-title'>Service-first backend experiments</div>
+                <p class='list-item-body'>
+                  I regularly build small services and tools to experiment with new ideas
+                  in APIs, observability, and performance. Some of these become helpers
+                  I reuse across projects.
+                </p>
+              </li>
+              <li>
+                <div class='list-item-title'>Side projects</div>
+                <p class='list-item-body'>
+                  This site is intentionally minimal. I keep more detailed notes and
+                  experiments in private repos and internal tools. If you are curious
+                  about something specific, reach out.
+                </p>
+              </li>
+            </ul>
+          </section>
+        </div>
+
+        <aside>
+          <section id='skills'>
+            <h2>Skills</h2>
+            <ul class='list'>
+              <li>
+                <div class='list-item-title'>Backend</div>
+                <p class='list-item-body'>
+                  REST APIs, microservices, authentication/authorization, background
+                  jobs, data modeling, and production debugging.
+                </p>
+              </li>
+              <li>
+                <div class='list-item-title'>Ecosystem</div>
+                <p class='list-item-body'>
+                  Databases, caching, messaging, observability, CI/CD pipelines, and
+                  cloud-native tooling.
+                </p>
+              </li>
+              <li>
+                <div class='list-item-title'>Ways of working</div>
+                <p class='list-item-body'>
+                  Code reviews, documentation, testing, and incremental delivery with a
+                  focus on keeping systems simple and maintainable.
+                </p>
+              </li>
+            </ul>
+          </section>
+
+          <section id='contact'>
+            <h2>Contact</h2>
+            <p class='tagline'>Happy to connect about backend engineering, systems, and tooling.</p>
+            <div class='contact-links'>
+              <a href='https://github.com/sprintooo' target='_blank' rel='noopener noreferrer'>
+                GitHub
+              </a>
+              <a href='https://www.linkedin.com/in/your-handle' target='_blank' rel='noopener noreferrer'>
+                LinkedIn
+              </a>
+              <a href='mailto:you@example.com'>Email</a>
+            </div>
+          </section>
+        </aside>
+      </main>
+
+      <footer>
+        <span>Built with a simple static page so it stays fast and easy to maintain.</span>
+      </footer>
+    </div>
+  </body>
+</html>
