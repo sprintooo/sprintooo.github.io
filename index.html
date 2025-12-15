@@ -3,7 +3,13 @@
   <head>
     <meta charset='UTF-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <title>Himanshu Patidar | Backend Engineer at Tekion</title>
+    <title>Himanshu Patidar | Spring Boot & Node.js Developer</title>
+    <meta name='description' content='Spring Boot & Node.js developer with experience building REST APIs, microservices, and backend systems using Java, Spring Boot, Node.js, and modern infrastructure.'>
+    <meta name='robots' content='index,follow'>
+    <meta property='og:title' content='Himanshu Patidar | Spring Boot & Node.js Developer'>
+    <meta property='og:description' content='Software engineer with experience at Inito and Gigforce, focused on REST APIs, microservices, and backend systems.'>
+    <meta property='og:type' content='website'>
+    <meta property='og:url' content='https://sprintooo.github.io/'>
     <style>
       :root {
         --bg: #020617;
@@ -198,25 +204,43 @@
         color: var(--muted);
         text-align: center;
       }
+
+      .skip-link {
+        position: absolute;
+        left: -999px;
+        top: 8px;
+        background: #0f172a;
+        color: var(--accent);
+        padding: 8px 12px;
+        border-radius: 999px;
+        z-index: 1000;
+      }
+
+      .skip-link:focus {
+        left: 16px;
+      }
     </style>
   </head>
   <body>
+    <a href='#about' class='skip-link'>Skip to main content</a>
     <div class='page'>
       <header>
         <div class='intro'>
           <h1 class='name'>Himanshu Patidar</h1>
-          <p class='role'>Backend Engineer @ Tekion · Building reliable services and APIs</p>
+          <p class='role'>Spring Boot & Node.js Developer · Backend & microservices</p>
           <p class='summary'>
-            I design and build backend services with a focus on clean APIs, performance,
-            and observability. I enjoy working on distributed systems, production issues,
-            and helping teams ship backend features with confidence.
+            I build backend systems and REST APIs using Java, Spring Boot, and Node.js. Recently I've
+            worked on production services at Inito and built APIs as an intern at Gigforce, focusing on
+            reliability, performance, and clean service boundaries.
           </p>
         </div>
         <nav aria-label='Primary navigation'>
           <a href='#about'>About</a>
           <a href='#experience'>Experience</a>
+          <a href='#education'>Education</a>
           <a href='#skills'>Skills</a>
           <a href='#projects'>Projects</a>
+          <a href='#achievements'>Achievements</a>
           <a href='#contact'>Contact</a>
         </nav>
       </header>
@@ -226,13 +250,14 @@
           <section id='about'>
             <h2>About</h2>
             <p class='tagline'>
-              Backend engineer who likes strong foundations more than flashy features.
+              Spring Boot & Node.js developer focused on REST APIs, microservices, and data-intensive
+              backend systems.
             </p>
             <div class='pill-row'>
-              <span class='pill highlight'>Backend engineering</span>
+              <span class='pill highlight'>Spring Boot & Node.js</span>
+              <span class='pill'>REST APIs</span>
               <span class='pill'>Microservices</span>
-              <span class='pill'>APIs & integrations</span>
-              <span class='pill'>Clean code</span>
+              <span class='pill'>Caching & messaging</span>
               <span class='pill'>Testing & reliability</span>
             </div>
           </section>
@@ -241,15 +266,39 @@
             <h2>Experience</h2>
             <ul class='list'>
               <li>
-                <div class='list-item-title'>Backend Engineer · Tekion</div>
+                <div class='list-item-title'>Software Engineer · Inito Pvt. Ltd.</div>
                 <div class='list-item-meta'>
-                  Working on backend services that power a modern automotive retail platform.
+                  July 2023 – Dec 2024 · Spring Boot, Java, Hibernate, PostgreSQL, Redis
                 </div>
                 <p class='list-item-body'>
-                  I collaborate with product and other engineering teams to design APIs,
-                  improve service reliability, and keep latency under control. Day to day
-                  work includes backend development, code reviews, debugging production
-                  issues, and improving internal tooling.
+                  Designed and built RESTful APIs and backend services using Spring Boot and Java.
+                  Implemented CRUD flows with JPA/Hibernate on PostgreSQL/MySQL, added Redis caching to
+                  reduce database load, integrated Spring Security with JWT, and deployed microservices
+                  using Docker and Kubernetes.
+                </p>
+              </li>
+              <li>
+                <div class='list-item-title'>Software Developer Intern · Gigforce Pvt. Ltd.</div>
+                <div class='list-item-meta'>
+                  Jun 2022 – Aug 2022 · Node.js, Express.js, MERN
+                </div>
+                <p class='list-item-body'>
+                  Developed CRUD APIs for uploading and displaying Excel data using Node.js and
+                  Express.js. Implemented Excel file validations and JWT-based authentication for the
+                  REST API.
+                </p>
+              </li>
+            </ul>
+          </section>
+          <section id='education'>
+            <h2>Education</h2>
+            <ul class='list'>
+              <li>
+                <div class='list-item-title'>B.S. in Mathematics and Statistics - IIT Kanpur</div>
+                <div class='list-item-meta'>July 2019 - May 2023</div>
+                <p class='list-item-body'>
+                  Completed a strong foundation in mathematics and statistics. Secured AIR 2426 in JEE
+                  Advanced and AIR 3314 in JEE Mains.
                 </p>
               </li>
             </ul>
@@ -259,19 +308,33 @@
             <h2>Projects</h2>
             <ul class='list'>
               <li>
-                <div class='list-item-title'>Service-first backend experiments</div>
+                <div class='list-item-title'>E-Commerce Backend System · BharatMart</div>
+                <div class='list-item-meta'>
+                  Spring Boot, microservices, RabbitMQ, Redis, PostgreSQL
+                </div>
                 <p class='list-item-body'>
-                  I regularly build small services and tools to experiment with new ideas
-                  in APIs, observability, and performance. Some of these become helpers
-                  I reuse across projects.
+                  Designed a scalable e-commerce backend with Spring Boot microservices. Implemented
+                  user authentication, product management, and order processing, using RabbitMQ for
+                  event-driven communication and Redis for caching.
                 </p>
               </li>
               <li>
-                <div class='list-item-title'>Side projects</div>
+                <div class='list-item-title'>Habit Manager API · Habitant</div>
+                <div class='list-item-meta'>
+                  Spring Boot, Java, JPA/Hibernate, PostgreSQL, Redis
+                </div>
                 <p class='list-item-body'>
-                  This site is intentionally minimal. I keep more detailed notes and
-                  experiments in private repos and internal tools. If you are curious
-                  about something specific, reach out.
+                  Built a task and habit management API with secure authentication using Spring
+                  Security and JWT. Implemented CRUD operations with JPA/Hibernate and optimized
+                  performance with Redis caching and asynchronous processing.
+                </p>
+              </li>
+              <li>
+                <div class='list-item-title'>Applied ML & AI experiments</div>
+                <p class='list-item-body'>
+                  Built small ML projects including an AI-driven Snake game with PyTorch and Deep
+                  Q-learning, a facial emotion recognition system using CNN ensembles, and a toxic
+                  tweet classifier using logistic regression and NLP.
                 </p>
               </li>
             </ul>
@@ -285,22 +348,41 @@
               <li>
                 <div class='list-item-title'>Backend</div>
                 <p class='list-item-body'>
-                  REST APIs, microservices, authentication/authorization, background
-                  jobs, data modeling, and production debugging.
+                  Java, Spring Boot, Node.js, Express.js, REST APIs, GraphQL, authentication/
+                  authorization, background jobs, data modeling, and production debugging.
                 </p>
               </li>
               <li>
                 <div class='list-item-title'>Ecosystem</div>
                 <p class='list-item-body'>
-                  Databases, caching, messaging, observability, CI/CD pipelines, and
-                  cloud-native tooling.
+                  PostgreSQL, MySQL, Redis, RabbitMQ, Docker, Kubernetes, logging (LogDNA), Git,
+                  GitHub, and CI/CD pipelines.
                 </p>
               </li>
               <li>
                 <div class='list-item-title'>Ways of working</div>
                 <p class='list-item-body'>
-                  Code reviews, documentation, testing, and incremental delivery with a
-                  focus on keeping systems simple and maintainable.
+                  Code reviews, documentation, testing with JUnit and Mockito, and incremental
+                  delivery with a focus on keeping systems simple and maintainable.
+                </p>
+              </li>
+            </ul>
+          </section>
+          <section id='achievements'>
+            <h2>Achievements</h2>
+            <ul class='list'>
+              <li>
+                <div class='list-item-title'>Academic</div>
+                <p class='list-item-body'>
+                  Secured AIR 2426 in JEE Advanced and AIR 3314 in JEE Mains.
+                </p>
+              </li>
+              <li>
+                <div class='list-item-title'>Athletics</div>
+                <p class='list-item-body'>
+                  Represented IIT Kanpur at Inter IIT 2023 (IIT Delhi) in sprint events and won
+                  multiple medals in 100m, 4x100m relay, and long jump across institute-level
+                  competitions.
                 </p>
               </li>
             </ul>
@@ -308,15 +390,15 @@
 
           <section id='contact'>
             <h2>Contact</h2>
-            <p class='tagline'>Happy to connect about backend engineering, systems, and tooling.</p>
+            <p class='tagline'>Happy to connect about backend engineering, backend roles, or interesting side projects.</p>
             <div class='contact-links'>
               <a href='https://github.com/sprintooo' target='_blank' rel='noopener noreferrer'>
                 GitHub
               </a>
-              <a href='https://www.linkedin.com/in/your-handle' target='_blank' rel='noopener noreferrer'>
+              <a href='https://www.linkedin.com/in/himanshu-patidar-b609661a7' target='_blank' rel='noopener noreferrer'>
                 LinkedIn
               </a>
-              <a href='mailto:you@example.com'>Email</a>
+              <a href='mailto:himanshupatidar622@gmail.com'>Email</a>
             </div>
           </section>
         </aside>
