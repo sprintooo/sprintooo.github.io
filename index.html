@@ -162,13 +162,22 @@
         flex-wrap: wrap;
         gap: var(--space-sm);
         align-self: flex-start;
+        padding: var(--space-sm);
+        background: rgba(15, 23, 42, 0.6);
+        border-radius: var(--radius-lg);
+        border: 1px solid var(--border);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
       }
 
       @media (min-width: 720px) {
         nav {
+          position: sticky;
+          top: var(--space-lg);
           flex-direction: column;
-          align-items: flex-end;
+          align-items: stretch;
           gap: var(--space-xs);
+          padding: var(--space-md);
         }
       }
 
@@ -178,24 +187,63 @@
         font-size: var(--font-sm);
         font-weight: 500;
         padding: var(--space-sm) var(--space-md);
-        border-radius: var(--radius-full);
+        border-radius: var(--radius-md);
         border: 1px solid transparent;
         letter-spacing: var(--letter-spacing-wide);
+        position: relative;
+        overflow: hidden;
         transition: color var(--transition-fast),
                     background-color var(--transition-fast),
                     border-color var(--transition-fast),
                     transform var(--transition-fast);
       }
 
+      /* Active indicator line */
+      nav a::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%) scaleY(0);
+        width: 3px;
+        height: 60%;
+        background: var(--accent);
+        border-radius: var(--radius-full);
+        transition: transform var(--transition-fast);
+      }
+
       nav a:hover {
         color: var(--accent);
-        border-color: var(--accent-soft);
         background: var(--accent-soft);
-        transform: translateY(-1px);
+        padding-left: calc(var(--space-md) + 6px);
+      }
+
+      nav a:hover::before {
+        transform: translateY(-50%) scaleY(1);
       }
 
       nav a:active {
-        transform: translateY(0);
+        transform: scale(0.98);
+      }
+
+      /* Nav label */
+      nav::before {
+        content: 'Navigate';
+        display: none;
+        font-size: var(--font-xs);
+        font-weight: 600;
+        color: var(--muted-dim);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        padding: 0 var(--space-sm) var(--space-sm);
+        border-bottom: 1px solid var(--border);
+        margin-bottom: var(--space-xs);
+      }
+
+      @media (min-width: 720px) {
+        nav::before {
+          display: block;
+        }
       }
 
       main {
