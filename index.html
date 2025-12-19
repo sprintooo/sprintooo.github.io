@@ -355,6 +355,20 @@
         display: flex;
         align-items: center;
         gap: var(--space-md);
+        position: relative;
+      }
+
+      /* Section number indicator */
+      section h2 .section-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 24px;
+        height: 24px;
+        border-radius: var(--radius-sm);
+        background: var(--accent-soft);
+        font-size: 10px;
+        color: var(--accent);
       }
 
       section h2::after {
@@ -549,6 +563,49 @@
 
       .skip-link:focus {
         left: var(--space-md);
+      }
+
+      /* ========== FOCUS STATES ========== */
+
+      /* Universal focus ring */
+      *:focus {
+        outline: none;
+      }
+
+      *:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 3px;
+        border-radius: var(--radius-sm);
+      }
+
+      /* Custom focus for specific elements */
+      nav a:focus-visible {
+        outline-offset: 2px;
+        background: var(--accent-soft);
+      }
+
+      .contact-links a:focus-visible {
+        outline-offset: 4px;
+      }
+
+      .pill:focus-visible {
+        outline-offset: 2px;
+        transform: scale(1.05);
+      }
+
+      section:focus-within {
+        border-color: rgba(56, 189, 248, 0.3);
+      }
+
+      /* Selection styling */
+      ::selection {
+        background: rgba(56, 189, 248, 0.3);
+        color: var(--text-bright);
+      }
+
+      ::-moz-selection {
+        background: rgba(56, 189, 248, 0.3);
+        color: var(--text-bright);
       }
 
       /* Smooth scroll behavior */
