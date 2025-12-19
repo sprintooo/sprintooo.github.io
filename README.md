@@ -18,20 +18,67 @@ This is my personal portfolio website highlighting my experience building backen
 
 The portfolio itself is built with:
 
-- **HTML5** - Semantic markup
-- **CSS3** - Custom styling with CSS Grid and Flexbox
-- **Responsive Design** - Mobile-first approach with media queries
-- **Accessibility** - Skip links, semantic HTML, proper ARIA labels
-- **SEO** - Meta tags, Open Graph tags for social sharing
+- **HTML5** - Semantic markup with proper heading hierarchy
+- **CSS3** - Custom properties (CSS variables), Grid, Flexbox, and modern features
+- **Inter Font** - Google Fonts for improved typography
+- **Responsive Design** - Mobile-first approach with 3 breakpoints (480px, 720px, 800px)
+- **Accessibility** - Skip links, focus states, `prefers-reduced-motion`, `prefers-contrast`
+- **SEO** - Meta tags, Open Graph, Twitter Card for social sharing
+
+## Design System
+
+The site uses a comprehensive CSS design system:
+
+### Spacing Scale
+```css
+--space-xs: 4px    --space-sm: 8px    --space-md: 16px
+--space-lg: 24px   --space-xl: 32px   --space-2xl: 48px   --space-3xl: 64px
+```
+
+### Shadow System
+```css
+--shadow-sm      /* Subtle depth */
+--shadow-md      /* Card elevation */
+--shadow-lg      /* Modal/dropdown */
+--shadow-accent  /* Blue glow effect */
+--shadow-glow    /* Bright accent glow */
+```
+
+### Color Palette
+- **Primary Accent**: `#38bdf8` (Sky blue)
+- **Secondary Accent**: `#a78bfa` (Purple)
+- **Background**: Dark gradient with layered glows
+- **Text**: `#f1f5f9` (bright) / `#94a3b8` (muted)
 
 ## Features
 
-- ✨ Clean, minimal dark theme
-- 📱 Fully responsive layout
-- ♿ Accessibility-focused (keyboard navigation, skip links)
-- 🔍 SEO optimized with meta tags and Open Graph
-- 🎨 Modern CSS Grid layout
-- 🚀 Fast loading, no dependencies
+### Visual Design
+- ✨ Glassmorphism cards with blur backdrop
+- 🎨 Gradient name heading (white → blue → purple)
+- 🌟 Layered background with subtle color glows
+- 💫 Animated entrance effects (fade-in, stagger)
+- 🔮 Hover glow effects on interactive elements
+
+### User Experience
+- 📱 Fully responsive with mobile-first approach
+- 🖱️ Smooth scroll behavior
+- 📌 Sticky navigation on desktop
+- ⌨️ Full keyboard navigation support
+- 🎯 44-48px touch targets on mobile
+
+### Accessibility
+- ♿ Custom `focus-visible` outlines
+- 🔗 Skip to main content link
+- 🎬 `prefers-reduced-motion` support
+- 🔲 `prefers-contrast: high` support
+- 📝 Proper semantic HTML structure
+
+### Polish
+- 🖨️ Print-friendly styles
+- 📜 Custom styled scrollbars
+- 👨‍💻 Emoji favicon
+- ❤️ Animated heart in footer
+- 🔗 Twitter Card & Open Graph tags
 
 ## Local Development
 
@@ -47,11 +94,10 @@ To run this site locally:
    ```bash
    # Option 1: Direct file open
    open index.html  # macOS
-   # or
    xdg-open index.html  # Linux
    # or just double-click index.html in your file explorer
 
-   # Option 2: Use a local server (recommended)
+   # Option 2: Use a local server (recommended for testing)
    python3 -m http.server 8000
    # Then visit http://localhost:8000
    ```
@@ -65,11 +111,25 @@ To run this site locally:
 
 ```
 .
-├── index.html          # Main portfolio page (HTML + inline CSS)
-└── README.md          # This file
+├── index.html    # Main portfolio page (~1100 lines of HTML + CSS)
+└── README.md     # This file
 ```
 
-The entire site is contained in a single `index.html` file with inline CSS for simplicity and fast loading.
+The entire site is contained in a single `index.html` file with inline CSS for simplicity and fast loading. No build tools, no dependencies, no JavaScript frameworks.
+
+## CSS Architecture
+
+The stylesheet is organized into clear sections:
+
+```
+1. CSS Variables (colors, spacing, typography, shadows)
+2. Reset & Base styles
+3. Layout (page, header, main grid)
+4. Components (nav, sections, pills, lists, buttons)
+5. Focus states & accessibility
+6. Micro-animations & keyframes
+7. Final polish (scrollbar, print, high contrast)
+```
 
 ## Deployment
 
@@ -80,6 +140,15 @@ This site is automatically deployed via **GitHub Pages**:
 - **Updates**: Automatic on push to `main`
 
 Any changes merged to the `main` branch will be live within a few minutes.
+
+## Browser Support
+
+- ✅ Chrome/Edge (last 2 versions)
+- ✅ Firefox (last 2 versions)
+- ✅ Safari (last 2 versions)
+- ✅ Mobile browsers (iOS Safari, Chrome for Android)
+
+Features like `backdrop-filter` gracefully degrade in unsupported browsers.
 
 ## Contact
 
