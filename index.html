@@ -1369,6 +1369,37 @@
         width: 300px;
         height: 300px;
       }
+
+      /* Split text animation */
+      @keyframes charReveal {
+        0% {
+          opacity: 0;
+          transform: translateY(20px) rotateX(-90deg);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0) rotateX(0);
+        }
+      }
+
+      .split-char {
+        animation: charReveal 0.6s ease forwards;
+        opacity: 0;
+      }
+
+      /* Party mode (Konami code easter egg) */
+      @keyframes partyBg {
+        0% { filter: hue-rotate(0deg); }
+        100% { filter: hue-rotate(360deg); }
+      }
+
+      .party-mode {
+        animation: partyBg 0.5s linear infinite;
+      }
+
+      .party-mode * {
+        animation: partyBg 0.3s linear infinite;
+      }
     </style>
   </head>
   <body>
@@ -1989,6 +2020,56 @@
         const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
         const progress = (scrollTop / scrollHeight) * 100;
         progressBar.style.width = `${progress}%`;
+      });
+
+      // ========== SPLIT TEXT ANIMATION ==========
+      function splitText(element) {
+        const text = element.textContent;
+        element.innerHTML = '';
+        text.split('').forEach((char, i) => {
+          const span = document.createElement('span');
+          span.textContent = char === ' ' ? '\u00A0' : char;
+          span.style.display = 'inline-block';
+          span.style.animationDelay = `${i * 0.03}s`;
+          span.classList.add('split-char');
+          element.appendChild(span);
+        });
+      }
+
+      // Apply to name
+      const nameElement = document.querySelector('.name');
+      if (nameElement && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        splitText(nameElement);
+      }
+
+      // ========== SECTION HOVER SOUND (optional) ==========
+      // Uncomment to enable subtle hover sounds
+      /*
+      const hoverSound = new Audio('data:audio/wav;base64,UklGRl9vT19XQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YU');
+      document.querySelectorAll('section').forEach(section => {
+        section.addEventListener('mouseenter', () => {
+          hoverSound.currentTime = 0;
+          hoverSound.volume = 0.1;
+          hoverSound.play().catch(() => {});
+        });
+      });
+      */
+
+      // ========== EASTER EGG: Konami Code ==========
+      const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+      let konamiIndex = 0;
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === konamiCode[konamiIndex]) {
+          konamiIndex++;
+          if (konamiIndex === konamiCode.length) {
+            document.body.classList.add('party-mode');
+            setTimeout(() => document.body.classList.remove('party-mode'), 5000);
+            konamiIndex = 0;
+          }
+        } else {
+          konamiIndex = 0;
+        }
       });
     </script>
   </body>
