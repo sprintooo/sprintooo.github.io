@@ -1023,6 +1023,38 @@
           display: none !important;
         }
       }
+
+      /* Scroll reveal animations */
+      .reveal-element {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+      }
+
+      .reveal-element.revealed {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .list li.reveal-element {
+        opacity: 0;
+        transform: translateX(-20px);
+      }
+
+      .list li.revealed {
+        opacity: 1;
+        transform: translateX(0);
+      }
+
+      .pill.reveal-element {
+        opacity: 0;
+        transform: scale(0.8);
+      }
+
+      .pill.revealed {
+        opacity: 1;
+        transform: scale(1);
+      }
     </style>
   </head>
   <body>
@@ -1384,6 +1416,55 @@
         cursor.style.display = 'none';
         cursorDot.style.display = 'none';
       }
+
+      // ========== SCROLL REVEAL ANIMATIONS ==========
+      const revealElements = document.querySelectorAll('section, .list li, .pill-row');
+
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('revealed');
+            // Stagger children
+            const children = entry.target.querySelectorAll('.list li, .pill');
+            children.forEach((child, i) => {
+              child.style.transitionDelay = `${i * 0.05}s`;
+              child.classList.add('revealed');
+            });
+          }
+        });
+      }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      });
+
+      revealElements.forEach(el => {
+        el.classList.add('reveal-element');
+        revealObserver.observe(el);
+      });
+
+      // Parallax effect on scroll
+      let ticking = false;
+      window.addEventListener('scroll', () => {
+        if (!ticking) {
+          requestAnimationFrame(() => {
+            const scrollY = window.scrollY;
+            const header = document.querySelector('header');
+            const name = document.querySelector('.name');
+
+            if (header && scrollY < 500) {
+              header.style.transform = `translateY(${scrollY * 0.3}px)`;
+              header.style.opacity = 1 - (scrollY / 500);
+            }
+
+            if (name && scrollY < 300) {
+              name.style.transform = `scale(${1 - scrollY * 0.0005})`;
+            }
+
+            ticking = false;
+          });
+          ticking = true;
+        }
+      });
     </script>
   </body>
 </html>
