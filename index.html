@@ -1070,6 +1070,72 @@
       section * {
         transform: translateZ(20px);
       }
+
+      /* Animated gradient border */
+      @keyframes gradientRotate {
+        0% { --gradient-angle: 0deg; }
+        100% { --gradient-angle: 360deg; }
+      }
+
+      @property --gradient-angle {
+        syntax: '<angle>';
+        initial-value: 0deg;
+        inherits: false;
+      }
+
+      .gradient-border {
+        position: relative;
+        background: var(--bg);
+        border-radius: var(--radius-xl);
+      }
+
+      .gradient-border::before {
+        content: '';
+        position: absolute;
+        inset: -2px;
+        border-radius: inherit;
+        background: conic-gradient(
+          from var(--gradient-angle),
+          var(--accent),
+          var(--secondary),
+          var(--accent)
+        );
+        z-index: -1;
+        animation: gradientRotate 3s linear infinite;
+        opacity: 0;
+        transition: opacity 0.3s;
+      }
+
+      .gradient-border:hover::before {
+        opacity: 1;
+      }
+
+      /* Glow pulse on pills */
+      @keyframes glowPulse {
+        0%, 100% { box-shadow: 0 0 5px rgba(56, 189, 248, 0.3); }
+        50% { box-shadow: 0 0 20px rgba(56, 189, 248, 0.6); }
+      }
+
+      .pill:hover {
+        animation: glowPulse 1.5s ease-in-out infinite;
+      }
+
+      /* Shimmer effect */
+      @keyframes shimmer {
+        0% { background-position: -200% 0; }
+        100% { background-position: 200% 0; }
+      }
+
+      .shimmer {
+        background: linear-gradient(
+          90deg,
+          transparent 0%,
+          rgba(255, 255, 255, 0.1) 50%,
+          transparent 100%
+        );
+        background-size: 200% 100%;
+        animation: shimmer 2s infinite;
+      }
     </style>
   </head>
   <body>
