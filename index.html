@@ -1513,6 +1513,19 @@
         transition: transform 0.1s;
       }
 
+      /* Mouse trail particles */
+      .trail-particle {
+        position: fixed;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--accent), var(--secondary));
+        pointer-events: none;
+        z-index: 9998;
+        opacity: 0;
+        transform: translate(-50%, -50%);
+      }
+
       .custom-cursor.cursor-hover {
         width: 60px;
         height: 60px;
@@ -3140,6 +3153,40 @@
         requestAnimationFrame(animateCursor);
       }
       animateCursor();
+
+      // Mouse trail effect
+      const trailCount = 12;
+      const trails = [];
+      for (let i = 0; i < trailCount; i++) {
+        const trail = document.createElement('div');
+        trail.className = 'trail-particle';
+        document.body.appendChild(trail);
+        trails.push({ el: trail, x: 0, y: 0 });
+      }
+
+      let mouseX = 0, mouseY = 0;
+      document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+      });
+
+      function animateTrail() {
+        let prevX = mouseX, prevY = mouseY;
+        trails.forEach((trail, i) => {
+          const dx = prevX - trail.x;
+          const dy = prevY - trail.y;
+          trail.x += dx * 0.3;
+          trail.y += dy * 0.3;
+          trail.el.style.left = trail.x + 'px';
+          trail.el.style.top = trail.y + 'px';
+          trail.el.style.opacity = (1 - i / trailCount) * 0.5;
+          trail.el.style.transform = `translate(-50%, -50%) scale(${1 - i / trailCount})`;
+          prevX = trail.x;
+          prevY = trail.y;
+        });
+        requestAnimationFrame(animateTrail);
+      }
+      animateTrail();
 
       // Cursor interactions
       const interactiveElements = document.querySelectorAll('a, button, .pill, nav a, .contact-links a');
