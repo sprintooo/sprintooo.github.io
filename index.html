@@ -1306,22 +1306,25 @@
 
       /* Scrollbar styling */
       ::-webkit-scrollbar {
-        width: 10px;
-        height: 10px;
+        width: 8px;
+        height: 8px;
       }
 
       ::-webkit-scrollbar-track {
-        background: var(--bg);
+        background: rgba(15, 23, 42, 0.5);
+        border-radius: var(--radius-full);
       }
 
       ::-webkit-scrollbar-thumb {
-        background: var(--border);
+        background: linear-gradient(180deg, var(--accent), var(--secondary));
         border-radius: var(--radius-full);
-        border: 2px solid var(--bg);
+        border: 2px solid transparent;
+        background-clip: padding-box;
       }
 
       ::-webkit-scrollbar-thumb:hover {
-        background: var(--muted-dim);
+        background: linear-gradient(180deg, var(--accent), var(--tertiary));
+        background-clip: padding-box;
       }
 
       /* Firefox scrollbar */
