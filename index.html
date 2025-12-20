@@ -192,6 +192,26 @@
         max-width: 50ch;
       }
 
+      /* Mobile: better text sizing */
+      @media (max-width: 479px) {
+        .role {
+          font-size: var(--font-base);
+        }
+
+        .summary {
+          font-size: var(--font-sm);
+          margin-top: var(--space-sm);
+        }
+
+        .list-item-body {
+          font-size: var(--font-xs);
+        }
+
+        .tagline {
+          font-size: var(--font-xs);
+        }
+      }
+
       nav {
         display: flex;
         flex-wrap: wrap;
@@ -494,6 +514,18 @@
         margin-top: var(--space-md);
       }
 
+      /* Mobile: smaller pills */
+      @media (max-width: 479px) {
+        .pill-row {
+          gap: var(--space-xs);
+        }
+
+        .pill {
+          padding: var(--space-xs) var(--space-sm);
+          font-size: 0.7rem;
+        }
+      }
+
       .pill {
         font-size: var(--font-xs);
         font-weight: 500;
@@ -632,6 +664,18 @@
         flex-wrap: wrap;
         gap: var(--space-sm);
         margin-top: var(--space-md);
+      }
+
+      /* Mobile: stack contact links vertically */
+      @media (max-width: 479px) {
+        .contact-links {
+          flex-direction: column;
+        }
+
+        .contact-links a {
+          width: 100%;
+          justify-content: center;
+        }
       }
 
       .contact-links a {
