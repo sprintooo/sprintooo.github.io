@@ -370,6 +370,18 @@
         50% { opacity: 0; }
       }
 
+      /* Scroll reveal animation */
+      .reveal-item {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.6s ease, transform 0.6s ease;
+      }
+
+      .reveal-item.revealed {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
       .summary {
         margin-top: var(--space-md);
         font-size: var(--font-base);
@@ -3383,6 +3395,25 @@
       }
 
       typeEffect();
+
+      // ========== SCROLL REVEAL ANIMATION ==========
+      const revealElements = document.querySelectorAll('.list li, .pill-row .pill');
+
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry, index) => {
+          if (entry.isIntersecting) {
+            setTimeout(() => {
+              entry.target.classList.add('revealed');
+            }, index * 50);
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+      revealElements.forEach(el => {
+        el.classList.add('reveal-item');
+        revealObserver.observe(el);
+      });
 
       // ========== ACTIVE NAVIGATION TRACKING ==========
       const navLinks = document.querySelectorAll('nav a[href^="#"]');
