@@ -1703,6 +1703,117 @@
         opacity: 0;
         transform: rotate(90deg);
       }
+
+      /* Enhanced hover card with gradient overlay */
+      .hover-card {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hover-card::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          135deg,
+          rgba(56, 189, 248, 0.1) 0%,
+          transparent 50%,
+          rgba(167, 139, 250, 0.1) 100%
+        );
+        opacity: 0;
+        transition: opacity 0.4s ease;
+      }
+
+      .hover-card:hover::before {
+        opacity: 1;
+      }
+
+      /* Shine effect on cards */
+      .shine-effect {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .shine-effect::after {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: linear-gradient(
+          45deg,
+          transparent 40%,
+          rgba(255, 255, 255, 0.1) 50%,
+          transparent 60%
+        );
+        transform: translateX(-100%) rotate(45deg);
+        transition: transform 0.6s;
+      }
+
+      .shine-effect:hover::after {
+        transform: translateX(100%) rotate(45deg);
+      }
+
+      /* Animated gradient text */
+      .gradient-text-animated {
+        background: linear-gradient(
+          90deg,
+          var(--accent),
+          var(--secondary),
+          var(--accent)
+        );
+        background-size: 200% auto;
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: gradientFlow 3s linear infinite;
+      }
+
+      @keyframes gradientFlow {
+        0% { background-position: 0% center; }
+        100% { background-position: 200% center; }
+      }
+
+      /* Elastic button effect */
+      .elastic-btn {
+        transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      }
+
+      .elastic-btn:hover {
+        transform: scale(1.05);
+      }
+
+      .elastic-btn:active {
+        transform: scale(0.95);
+      }
+
+      /* Floating label effect */
+      .float-label {
+        position: relative;
+      }
+
+      .float-label::after {
+        content: attr(data-label);
+        position: absolute;
+        top: -30px;
+        left: 50%;
+        transform: translateX(-50%) translateY(10px);
+        background: var(--bg-alt);
+        color: var(--text);
+        padding: 4px 8px;
+        border-radius: var(--radius-sm);
+        font-size: var(--font-xs);
+        opacity: 0;
+        transition: opacity 0.3s, transform 0.3s;
+        pointer-events: none;
+        white-space: nowrap;
+      }
+
+      .float-label:hover::after {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+      }
     </style>
   </head>
   <body>
