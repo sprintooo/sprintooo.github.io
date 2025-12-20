@@ -143,6 +143,23 @@
         }
       }
 
+      /* Glassmorphism blur overlay for depth */
+      .blur-overlay {
+        position: fixed;
+        inset: 0;
+        z-index: -1;
+        backdrop-filter: blur(100px);
+        -webkit-backdrop-filter: blur(100px);
+        pointer-events: none;
+      }
+
+      /* Reduce motion for accessibility */
+      @media (prefers-reduced-motion: reduce) {
+        .mesh-gradient {
+          animation: none;
+        }
+      }
+
       .page {
         max-width: 1000px;
         margin: 0 auto;
@@ -2533,6 +2550,7 @@
   <body>
     <!-- Animated mesh gradient background -->
     <div class="mesh-gradient" aria-hidden="true"></div>
+    <div class="blur-overlay" aria-hidden="true"></div>
 
     <a href='#about' class='skip-link'>Skip to main content</a>
 
