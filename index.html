@@ -2076,6 +2076,99 @@
         0%, 100% { transform: scale(1); opacity: 0.3; }
         50% { transform: scale(1.1); opacity: 0.1; }
       }
+
+      /* Enhanced accessibility focus states */
+      :focus-visible {
+        outline: 3px solid var(--accent);
+        outline-offset: 4px;
+        border-radius: var(--radius-sm);
+      }
+
+      /* Skip link enhancement */
+      .skip-link {
+        position: fixed;
+        top: -100px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: var(--accent);
+        color: var(--bg);
+        padding: 12px 24px;
+        border-radius: var(--radius-full);
+        font-weight: 600;
+        z-index: 100000;
+        transition: top 0.3s;
+      }
+
+      .skip-link:focus {
+        top: 20px;
+      }
+
+      /* Screen reader only text */
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+
+      /* High contrast mode support */
+      @media (prefers-contrast: high) {
+        :root {
+          --border: #6b7280;
+          --muted: #e5e7eb;
+        }
+
+        section {
+          border-width: 2px;
+        }
+
+        .pill {
+          border-width: 2px;
+        }
+
+        a:focus-visible,
+        button:focus-visible {
+          outline-width: 4px;
+        }
+      }
+
+      /* Forced colors mode (Windows High Contrast) */
+      @media (forced-colors: active) {
+        .custom-cursor,
+        .spotlight,
+        .orb,
+        .morph-blob,
+        .aurora-bg {
+          display: none;
+        }
+
+        section {
+          border: 2px solid CanvasText;
+        }
+      }
+
+      /* Reduce transparency for better readability */
+      @media (prefers-reduced-transparency: reduce) {
+        section {
+          background: var(--bg);
+        }
+
+        nav {
+          background: var(--bg) !important;
+        }
+      }
+
+      /* Dark mode specific adjustments */
+      @media (prefers-color-scheme: dark) {
+        :root:not([data-theme="light"]) {
+          color-scheme: dark;
+        }
+      }
     </style>
   </head>
   <body>
