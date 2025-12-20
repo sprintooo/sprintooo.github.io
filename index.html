@@ -558,6 +558,23 @@
         background-size: 200% 100%;
         background-position: 0% 0%;
         transition: background-position var(--transition-normal);
+        position: relative;
+      }
+
+      /* Underline effect on list item title */
+      .list-item-title::after {
+        content: '';
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 0;
+        height: 1px;
+        background: linear-gradient(90deg, var(--accent), var(--secondary));
+        transition: width var(--transition-normal);
+      }
+
+      .list li:hover .list-item-title::after {
+        width: 100%;
       }
 
       .list li {
@@ -887,13 +904,15 @@
 
       /* Float animation on name hover */
       .name {
-        transition: transform var(--transition-normal), background-position 0.8s ease;
+        transition: transform var(--transition-normal), background-position 0.8s ease, filter var(--transition-normal);
         background-size: 200% 100%;
+        cursor: default;
       }
 
       .name:hover {
         transform: scale(1.02);
         background-position: 100% 0;
+        filter: drop-shadow(0 0 20px rgba(56, 189, 248, 0.4));
       }
 
       /* Contact link icons animation */
@@ -1022,13 +1041,20 @@
       .footer-heart {
         display: inline-block;
         animation: heartbeat 1.5s ease-in-out infinite;
+        cursor: pointer;
+        transition: filter var(--transition-fast);
+      }
+
+      .footer-heart:hover {
+        filter: drop-shadow(0 0 8px rgba(239, 68, 68, 0.6));
+        animation: heartbeat 0.5s ease-in-out infinite;
       }
 
       @keyframes heartbeat {
         0%, 100% { transform: scale(1); }
-        25% { transform: scale(1.1); }
+        25% { transform: scale(1.2); }
         50% { transform: scale(1); }
-        75% { transform: scale(1.1); }
+        75% { transform: scale(1.2); }
       }
 
       /* Tooltip styling for future use */
@@ -1944,16 +1970,19 @@
       .contact-links a[href*="linkedin"]:hover {
         border-color: #0077b5;
         color: #0077b5;
+        box-shadow: 0 8px 25px -8px rgba(0, 119, 181, 0.4);
       }
 
       .contact-links a[href*="github"]:hover {
         border-color: #6e5494;
         color: #6e5494;
+        box-shadow: 0 8px 25px -8px rgba(110, 84, 148, 0.4);
       }
 
       .contact-links a[href*="mailto"]:hover {
         border-color: #ea4335;
         color: #ea4335;
+        box-shadow: 0 8px 25px -8px rgba(234, 67, 53, 0.4);
       }
 
       /* Animated border on contact section */
