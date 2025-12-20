@@ -1903,10 +1903,100 @@
       .pill.highlight {
         animation: breathe 3s ease-in-out infinite, subtlePulse 3s ease-in-out infinite;
       }
+
+      /* Page loader */
+      .page-loader {
+        position: fixed;
+        inset: 0;
+        background: var(--bg);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 20px;
+        transition: opacity 0.5s, visibility 0.5s;
+      }
+
+      .page-loader.loaded {
+        opacity: 0;
+        visibility: hidden;
+      }
+
+      .loader-spinner {
+        width: 50px;
+        height: 50px;
+        border: 3px solid var(--border);
+        border-top-color: var(--accent);
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+
+      @keyframes spin {
+        to { transform: rotate(360deg); }
+      }
+
+      .loader-text {
+        font-size: var(--font-sm);
+        color: var(--muted);
+        letter-spacing: 0.1em;
+      }
+
+      /* Skeleton loading */
+      .skeleton {
+        background: linear-gradient(
+          90deg,
+          var(--border) 25%,
+          var(--bg-alt) 50%,
+          var(--border) 75%
+        );
+        background-size: 200% 100%;
+        animation: skeleton 1.5s ease-in-out infinite;
+        border-radius: var(--radius-sm);
+      }
+
+      @keyframes skeleton {
+        0% { background-position: 200% 0; }
+        100% { background-position: -200% 0; }
+      }
+
+      /* Smooth page transition */
+      .page-transition {
+        animation: pageEnter 0.8s ease-out;
+      }
+
+      @keyframes pageEnter {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Loading progress bar */
+      .loading-bar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 3px;
+        background: linear-gradient(90deg, var(--accent), var(--secondary));
+        z-index: 999999;
+        width: 0%;
+        transition: width 0.3s;
+      }
     </style>
   </head>
   <body>
     <a href='#about' class='skip-link'>Skip to main content</a>
+
+    <!-- Page loader -->
+    <div class="page-loader" id="pageLoader">
+      <div class="loader-spinner"></div>
+      <div class="loader-text">Loading...</div>
+    </div>
 
     <!-- Theme toggle -->
     <button class="theme-toggle" aria-label="Toggle theme">
@@ -2646,6 +2736,14 @@
         const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
         html.setAttribute('data-theme', newTheme);
         localStorage.setItem('theme', newTheme);
+      });
+
+      // ========== PAGE LOADER ==========
+      window.addEventListener('load', () => {
+        setTimeout(() => {
+          document.getElementById('pageLoader').classList.add('loaded');
+          document.querySelector('.page').classList.add('page-transition');
+        }, 500);
       });
     </script>
   </body>
