@@ -3446,6 +3446,37 @@
 
       typeEffect();
 
+      // ========== ANIMATED NUMBER COUNTER ==========
+      function animateCounter(element, target, duration = 2000) {
+        let start = 0;
+        const startTime = performance.now();
+
+        function update(currentTime) {
+          const elapsed = currentTime - startTime;
+          const progress = Math.min(elapsed / duration, 1);
+          const easeOut = 1 - Math.pow(1 - progress, 3);
+          const current = Math.floor(easeOut * target);
+          element.textContent = current.toLocaleString();
+
+          if (progress < 1) {
+            requestAnimationFrame(update);
+          }
+        }
+        requestAnimationFrame(update);
+      }
+
+      // Apply to elements with data-count attribute
+      document.querySelectorAll('[data-count]').forEach(el => {
+        const target = parseInt(el.dataset.count);
+        const observer = new IntersectionObserver((entries) => {
+          if (entries[0].isIntersecting) {
+            animateCounter(el, target);
+            observer.disconnect();
+          }
+        }, { threshold: 0.5 });
+        observer.observe(el);
+      });
+
       // ========== PARALLAX HEADER EFFECT ==========
       const header = document.querySelector('header');
       const nameEl = document.querySelector('.name');
