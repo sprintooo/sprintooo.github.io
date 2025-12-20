@@ -3361,10 +3361,23 @@
         });
       }
 
-      // ========== 3D TILT EFFECT ON CARDS ==========
+      // ========== ENHANCED 3D TILT EFFECT ON CARDS ==========
       const cards = document.querySelectorAll('section');
 
       cards.forEach(card => {
+        let glare = document.createElement('div');
+        glare.className = 'card-glare';
+        glare.style.cssText = `
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(135deg, rgba(255,255,255,0.15), transparent 40%);
+          pointer-events: none;
+          border-radius: inherit;
+          opacity: 0;
+          transition: opacity 0.3s;
+        `;
+        card.appendChild(glare);
+
         card.addEventListener('mousemove', (e) => {
           const rect = card.getBoundingClientRect();
           const x = e.clientX - rect.left;
@@ -3373,10 +3386,16 @@
           const centerX = rect.width / 2;
           const centerY = rect.height / 2;
 
-          const rotateX = (y - centerY) / 20;
-          const rotateY = (centerX - x) / 20;
+          const rotateX = (y - centerY) / 15;
+          const rotateY = (centerX - x) / 15;
 
-          card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(10px)`;
+          // Glare follows mouse
+          const glareX = (x / rect.width) * 100;
+          const glareY = (y / rect.height) * 100;
+          glare.style.background = `radial-gradient(circle at ${glareX}% ${glareY}%, rgba(255,255,255,0.2), transparent 50%)`;
+          glare.style.opacity = '1';
+
+          card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(20px) scale(1.02)`;
 
           // Dynamic lighting effect
           const glareX = (x / rect.width) * 100;
@@ -3392,6 +3411,7 @@
         card.addEventListener('mouseleave', () => {
           card.style.transform = '';
           card.style.background = '';
+          glare.style.opacity = '0';
         });
       });
 
