@@ -1617,10 +1617,102 @@
         0%, 100% { transform: translateX(-50%) translateY(0); }
         50% { transform: translateX(-50%) translateY(-10px); }
       }
+
+      /* Theme toggle button */
+      .theme-toggle {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        border: 1px solid var(--border);
+        background: rgba(15, 23, 42, 0.8);
+        backdrop-filter: blur(10px);
+        cursor: pointer;
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: transform 0.3s, background 0.3s, border-color 0.3s;
+      }
+
+      .theme-toggle:hover {
+        transform: scale(1.1);
+        border-color: var(--accent);
+      }
+
+      .theme-toggle svg {
+        width: 24px;
+        height: 24px;
+        fill: var(--text);
+        transition: transform 0.5s;
+      }
+
+      .theme-toggle:hover svg {
+        transform: rotate(180deg);
+      }
+
+      /* Light theme variables */
+      [data-theme="light"] {
+        --bg: #f8fafc;
+        --bg-alt: #e2e8f0;
+        --text: #1e293b;
+        --text-bright: #0f172a;
+        --muted: #64748b;
+        --muted-dim: #94a3b8;
+        --border: #cbd5e1;
+        --accent: #0284c7;
+        --secondary: #7c3aed;
+      }
+
+      [data-theme="light"] body {
+        background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+      }
+
+      [data-theme="light"] .aurora-bg {
+        background: linear-gradient(-45deg, #f8fafc, #e0f2fe, #f0f9ff, #e2e8f0);
+      }
+
+      [data-theme="light"] .orb {
+        opacity: 0.3;
+      }
+
+      [data-theme="light"] section {
+        background: rgba(255, 255, 255, 0.8);
+        border-color: rgba(0, 0, 0, 0.1);
+      }
+
+      [data-theme="light"] .custom-cursor {
+        border-color: var(--accent);
+        mix-blend-mode: multiply;
+      }
+
+      /* Animated icon switch */
+      .sun-icon, .moon-icon {
+        position: absolute;
+        transition: opacity 0.3s, transform 0.3s;
+      }
+
+      [data-theme="dark"] .sun-icon {
+        opacity: 0;
+        transform: rotate(-90deg);
+      }
+
+      [data-theme="light"] .moon-icon {
+        opacity: 0;
+        transform: rotate(90deg);
+      }
     </style>
   </head>
   <body>
     <a href='#about' class='skip-link'>Skip to main content</a>
+
+    <!-- Theme toggle -->
+    <button class="theme-toggle" aria-label="Toggle theme">
+      <svg class="moon-icon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="sun-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+    </button>
 
     <!-- Aurora background and floating orbs -->
     <div class="aurora-bg"></div>
@@ -2333,6 +2425,27 @@
         } else {
           scrollIndicator.classList.remove('hidden');
         }
+      });
+
+      // ========== THEME TOGGLE ==========
+      const themeToggle = document.querySelector('.theme-toggle');
+      const html = document.documentElement;
+
+      // Check for saved preference or system preference
+      const savedTheme = localStorage.getItem('theme');
+      const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+      if (savedTheme) {
+        html.setAttribute('data-theme', savedTheme);
+      } else {
+        html.setAttribute('data-theme', systemPrefersDark ? 'dark' : 'dark');
+      }
+
+      themeToggle.addEventListener('click', () => {
+        const currentTheme = html.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        html.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
       });
     </script>
   </body>
