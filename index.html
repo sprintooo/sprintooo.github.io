@@ -35,12 +35,18 @@
         --accent-glow: rgba(56, 189, 248, 0.25);
         --secondary: #a78bfa;
         --secondary-soft: rgba(167, 139, 250, 0.08);
+        --tertiary: #34d399;
+        --tertiary-soft: rgba(52, 211, 153, 0.08);
         --text: #e5e7eb;
         --text-bright: #f8fafc;
         --muted: #9ca3af;
         --muted-dim: #6b7280;
         --border: #1f2937;
         --border-light: #374151;
+        /* Gradient presets */
+        --gradient-accent: linear-gradient(135deg, var(--accent), var(--secondary));
+        --gradient-subtle: linear-gradient(135deg, rgba(56, 189, 248, 0.1), rgba(167, 139, 250, 0.1));
+        --gradient-glow: radial-gradient(circle, var(--accent-glow), transparent 70%);
         /* Shadows - layered for realistic depth */
         --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.2), 0 2px 8px -2px rgba(0, 0, 0, 0.3);
         --shadow-md: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 24px -8px rgba(0, 0, 0, 0.4);
@@ -470,12 +476,16 @@
         font-weight: 700;
         letter-spacing: 0.15em;
         text-transform: uppercase;
-        color: var(--accent);
         margin-bottom: var(--space-md);
         display: flex;
         align-items: center;
         gap: var(--space-md);
         position: relative;
+        /* Gradient text */
+        background: var(--gradient-accent);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
       }
 
       /* Section number indicator */
@@ -560,14 +570,31 @@
 
       .pill.highlight {
         border-color: rgba(56, 189, 248, 0.6);
-        color: var(--accent);
-        background: linear-gradient(135deg, rgba(56, 189, 248, 0.12), rgba(56, 189, 248, 0.05));
+        color: var(--text-bright);
+        background: linear-gradient(135deg, rgba(56, 189, 248, 0.15), rgba(167, 139, 250, 0.1));
+        position: relative;
+      }
+
+      .pill.highlight::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        background: var(--gradient-accent);
+        opacity: 0;
+        transition: opacity var(--transition-fast);
+        z-index: -1;
       }
 
       .pill.highlight:hover {
-        background: linear-gradient(135deg, rgba(56, 189, 248, 0.2), rgba(56, 189, 248, 0.1));
-        transform: scale(1.05);
-        box-shadow: 0 4px 16px -4px rgba(56, 189, 248, 0.3);
+        color: white;
+        border-color: transparent;
+        transform: scale(1.05) translateY(-2px);
+        box-shadow: 0 6px 20px -4px rgba(56, 189, 248, 0.4);
+      }
+
+      .pill.highlight:hover::before {
+        opacity: 1;
       }
 
       .list {
