@@ -814,11 +814,23 @@
         color: white;
         border-color: transparent;
         transform: scale(1.05) translateY(-2px);
-        box-shadow: 0 6px 20px -4px rgba(56, 189, 248, 0.4);
+        box-shadow:
+          0 6px 20px -4px rgba(56, 189, 248, 0.4),
+          0 0 30px -5px rgba(56, 189, 248, 0.6),
+          inset 0 0 20px rgba(255, 255, 255, 0.1);
       }
 
       .pill.highlight:hover::before {
         opacity: 1;
+      }
+
+      /* Random glow animation on pills */
+      .pill:nth-child(odd):hover {
+        box-shadow: 0 0 20px -5px rgba(56, 189, 248, 0.5);
+      }
+
+      .pill:nth-child(even):hover {
+        box-shadow: 0 0 20px -5px rgba(167, 139, 250, 0.5);
       }
 
       .list {
