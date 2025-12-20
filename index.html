@@ -274,6 +274,18 @@
         transform: scale(0.98);
       }
 
+      /* Active navigation state */
+      nav a.active {
+        color: var(--accent);
+        background: var(--accent-soft);
+        border-color: rgba(56, 189, 248, 0.2);
+      }
+
+      nav a.active::before {
+        transform: translateY(-50%) scaleY(1);
+        background: linear-gradient(180deg, var(--accent), var(--secondary));
+      }
+
       /* Nav label */
       nav::before {
         content: 'Navigate';
@@ -758,6 +770,12 @@
       /* Smooth scroll behavior */
       html {
         scroll-behavior: smooth;
+        scroll-padding-top: var(--space-xl);
+      }
+
+      /* Scroll margin for section anchors */
+      section[id] {
+        scroll-margin-top: var(--space-xl);
       }
 
       /* List item hover effect */
@@ -1232,10 +1250,12 @@
         top: 0;
         left: 0;
         height: 3px;
-        background: linear-gradient(90deg, var(--accent), var(--secondary));
+        background: linear-gradient(90deg, var(--accent), var(--secondary), var(--accent));
+        background-size: 200% 100%;
         z-index: 10000;
         width: 0%;
-        transition: width 0.1s;
+        transition: width 0.15s ease-out;
+        box-shadow: 0 0 10px var(--accent), 0 0 5px var(--accent);
       }
 
       /* Role typing cursor */
@@ -2899,6 +2919,38 @@
         const progress = (scrollTop / scrollHeight) * 100;
         progressBar.style.width = `${progress}%`;
       });
+
+      // ========== ACTIVE NAVIGATION TRACKING ==========
+      const navLinks = document.querySelectorAll('nav a[href^="#"]');
+      const sections = document.querySelectorAll('section[id]');
+
+      function updateActiveNav() {
+        const scrollPos = window.scrollY + 150;
+
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop;
+          const sectionHeight = section.offsetHeight;
+          const sectionId = section.getAttribute('id');
+
+          if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
+            navLinks.forEach(link => {
+              link.classList.remove('active');
+              if (link.getAttribute('href') === `#${sectionId}`) {
+                link.classList.add('active');
+              }
+            });
+          }
+        });
+
+        // Handle top of page - activate first link
+        if (window.scrollY < 100) {
+          navLinks.forEach(link => link.classList.remove('active'));
+          navLinks[0]?.classList.add('active');
+        }
+      }
+
+      window.addEventListener('scroll', updateActiveNav);
+      updateActiveNav(); // Initial call
 
       // ========== SPLIT TEXT ANIMATION ==========
       function splitText(element) {
