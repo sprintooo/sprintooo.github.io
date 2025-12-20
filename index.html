@@ -158,6 +158,81 @@
         .mesh-gradient {
           animation: none;
         }
+        .floating-orb {
+          animation: none;
+        }
+      }
+
+      /* Floating animated orbs */
+      .floating-orbs {
+        position: fixed;
+        inset: 0;
+        z-index: -3;
+        overflow: hidden;
+        pointer-events: none;
+      }
+
+      .floating-orb {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(60px);
+        opacity: 0.6;
+        animation: floatOrb 15s ease-in-out infinite;
+      }
+
+      .floating-orb:nth-child(1) {
+        width: 400px;
+        height: 400px;
+        background: radial-gradient(circle, rgba(56, 189, 248, 0.4), transparent 70%);
+        top: -10%;
+        left: -5%;
+        animation-delay: 0s;
+        animation-duration: 20s;
+      }
+
+      .floating-orb:nth-child(2) {
+        width: 300px;
+        height: 300px;
+        background: radial-gradient(circle, rgba(167, 139, 250, 0.4), transparent 70%);
+        top: 20%;
+        right: -10%;
+        animation-delay: -5s;
+        animation-duration: 18s;
+      }
+
+      .floating-orb:nth-child(3) {
+        width: 350px;
+        height: 350px;
+        background: radial-gradient(circle, rgba(52, 211, 153, 0.3), transparent 70%);
+        bottom: 10%;
+        left: 10%;
+        animation-delay: -10s;
+        animation-duration: 22s;
+      }
+
+      .floating-orb:nth-child(4) {
+        width: 250px;
+        height: 250px;
+        background: radial-gradient(circle, rgba(251, 146, 60, 0.25), transparent 70%);
+        bottom: -5%;
+        right: 20%;
+        animation-delay: -7s;
+        animation-duration: 16s;
+      }
+
+      @keyframes floatOrb {
+        0%, 100% {
+          transform: translate(0, 0) scale(1);
+        }
+        25% {
+          transform: translate(30px, -40px) scale(1.1);
+        }
+        50% {
+          transform: translate(-20px, 20px) scale(0.95);
+        }
+        75% {
+          transform: translate(40px, 30px) scale(1.05);
+        }
       }
 
       .page {
@@ -2548,7 +2623,13 @@
     </style>
   </head>
   <body>
-    <!-- Animated mesh gradient background -->
+    <!-- Animated background layers -->
+    <div class="floating-orbs" aria-hidden="true">
+      <div class="floating-orb"></div>
+      <div class="floating-orb"></div>
+      <div class="floating-orb"></div>
+      <div class="floating-orb"></div>
+    </div>
     <div class="mesh-gradient" aria-hidden="true"></div>
     <div class="blur-overlay" aria-hidden="true"></div>
 
