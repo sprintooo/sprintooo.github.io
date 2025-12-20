@@ -153,6 +153,20 @@
         pointer-events: none;
       }
 
+      /* Vignette effect for edge focus */
+      .vignette {
+        position: fixed;
+        inset: 0;
+        z-index: 1;
+        pointer-events: none;
+        background: radial-gradient(
+          ellipse 80% 80% at 50% 50%,
+          transparent 0%,
+          transparent 50%,
+          rgba(0, 0, 0, 0.3) 100%
+        );
+      }
+
       /* Reduce motion for accessibility */
       @media (prefers-reduced-motion: reduce) {
         .mesh-gradient {
@@ -308,7 +322,22 @@
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
-        text-shadow: 0 0 60px rgba(56, 189, 248, 0.3);
+        position: relative;
+      }
+
+      /* Glow effect behind name */
+      .name::before {
+        content: attr(data-text);
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: -1;
+        background: linear-gradient(135deg, var(--accent), var(--secondary));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        filter: blur(30px);
+        opacity: 0.6;
       }
 
       .role {
@@ -2632,6 +2661,7 @@
     </div>
     <div class="mesh-gradient" aria-hidden="true"></div>
     <div class="blur-overlay" aria-hidden="true"></div>
+    <div class="vignette" aria-hidden="true"></div>
 
     <a href='#about' class='skip-link'>Skip to main content</a>
 
@@ -2665,7 +2695,7 @@
     <div class='page'>
       <header>
         <div class='intro'>
-          <h1 class='name'>Himanshu Patidar</h1>
+          <h1 class='name' data-text='Himanshu Patidar'>Himanshu Patidar</h1>
           <p class='role'>Software Engineer @ <span class='company'>Tekion</span> · Backend & microservices</p>
           <p class='summary'>
             I build backend systems and REST APIs using Java, Spring Boot, and Node.js. Currently working
