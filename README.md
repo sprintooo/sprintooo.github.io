@@ -8,7 +8,7 @@ Personal portfolio website showcasing my work as a Software Engineer specializin
 
 This is my personal portfolio website highlighting my experience building backend systems, REST APIs, and microservices. The site features:
 
-- **Experience**: Software Engineer at Tekion, Inito, and Gigforce
+- **Experience**: Currently working as Software Engineer at Tekion; previously at Inito and Gigforce
 - **Education**: B.S. in Mathematics and Statistics from IIT Kanpur
 - **Projects**: E-commerce backend (BharatMart), Habit Manager API (Habitant), and AI/ML experiments
 - **Skills**: Java, Spring Boot, Node.js, Express.js, PostgreSQL, Redis, RabbitMQ, Docker, Kubernetes, and more
