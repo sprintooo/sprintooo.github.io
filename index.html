@@ -847,7 +847,9 @@
         font-weight: 600;
         color: var(--text-bright);
         letter-spacing: var(--letter-spacing-normal);
-        display: inline;
+        display: inline-flex;
+        align-items: center;
+        gap: var(--space-xs);
         background: linear-gradient(90deg, var(--text-bright), var(--accent));
         -webkit-background-clip: text;
         background-clip: text;
@@ -856,6 +858,20 @@
         background-position: 0% 0%;
         transition: background-position var(--transition-normal);
         position: relative;
+      }
+
+      /* Animated arrow on list item hover */
+      .list-item-title .link-arrow {
+        display: inline-block;
+        opacity: 0;
+        transform: translateX(-5px);
+        transition: all 0.2s ease;
+        font-size: 0.8em;
+      }
+
+      .list li:hover .list-item-title .link-arrow {
+        opacity: 1;
+        transform: translateX(0);
       }
 
       /* Underline effect on list item title */
