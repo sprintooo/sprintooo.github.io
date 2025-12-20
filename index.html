@@ -1096,6 +1096,10 @@
           color: #1f2937;
         }
 
+        body::before, body::after {
+          display: none;
+        }
+
         .page {
           max-width: 100%;
           padding: 0;
@@ -1108,8 +1112,8 @@
           background: white;
         }
 
-        nav, .skip-link {
-          display: none;
+        nav, .skip-link, .custom-cursor, .custom-cursor-dot, .spotlight, .scroll-progress, .page-loader, #particleCanvas {
+          display: none !important;
         }
 
         a {
@@ -1117,10 +1121,31 @@
           text-decoration: underline;
         }
 
+        /* Print URLs after links */
+        a[href^="http"]::after {
+          content: " (" attr(href) ")";
+          font-size: 0.8em;
+          color: #6b7280;
+        }
+
+        a[href^="mailto"]::after {
+          content: " (" attr(href) ")";
+          font-size: 0.8em;
+        }
+
         .name {
           background: none;
           -webkit-text-fill-color: #1f2937;
           color: #1f2937;
+        }
+
+        .pill {
+          border-color: #e5e7eb;
+          background: #f9fafb;
+        }
+
+        .list-item-title {
+          -webkit-text-fill-color: #1f2937;
         }
       }
 
@@ -1250,6 +1275,35 @@
       }
 
       /* Show default cursor on touch devices */
+      @media (hover: none) and (pointer: coarse) {
+        /* Larger touch targets */
+        nav a {
+          min-height: 48px;
+          padding: var(--space-sm) var(--space-md);
+        }
+
+        .contact-links a {
+          min-height: 48px;
+        }
+
+        .pill {
+          min-height: 40px;
+          display: inline-flex;
+          align-items: center;
+        }
+
+        /* Disable hover effects on touch */
+        section:hover {
+          transform: none;
+          box-shadow: var(--shadow-sm);
+        }
+
+        .list li:hover {
+          background: transparent;
+          border-color: transparent;
+        }
+      }
+
       @media (hover: none) {
         .custom-cursor, .custom-cursor-dot {
           display: none !important;
