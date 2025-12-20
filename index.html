@@ -1814,6 +1814,95 @@
         opacity: 1;
         transform: translateX(-50%) translateY(0);
       }
+
+      /* Enhanced contact links */
+      .contact-links a {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .contact-links a .icon {
+        display: inline-block;
+        margin-right: 8px;
+        transition: transform 0.3s;
+      }
+
+      .contact-links a:hover .icon {
+        transform: scale(1.2) rotate(10deg);
+      }
+
+      /* Social icon colors on hover */
+      .contact-links a[href*="linkedin"]:hover {
+        border-color: #0077b5;
+        color: #0077b5;
+      }
+
+      .contact-links a[href*="github"]:hover {
+        border-color: #6e5494;
+        color: #6e5494;
+      }
+
+      .contact-links a[href*="mailto"]:hover {
+        border-color: #ea4335;
+        color: #ea4335;
+      }
+
+      /* Animated border on contact section */
+      #contact {
+        position: relative;
+      }
+
+      #contact::before {
+        content: '';
+        position: absolute;
+        inset: -2px;
+        background: linear-gradient(45deg, var(--accent), var(--secondary), var(--accent));
+        background-size: 300% 300%;
+        border-radius: inherit;
+        z-index: -1;
+        opacity: 0;
+        animation: borderGradient 3s ease infinite;
+        transition: opacity 0.3s;
+      }
+
+      #contact:hover::before {
+        opacity: 1;
+      }
+
+      @keyframes borderGradient {
+        0%, 100% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+      }
+
+      /* Copy to clipboard effect */
+      .copy-indicator {
+        position: fixed;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%) translateY(100px);
+        background: var(--bg-alt);
+        color: var(--accent);
+        padding: 12px 24px;
+        border-radius: var(--radius-full);
+        font-size: var(--font-sm);
+        box-shadow: var(--shadow-lg);
+        transition: transform 0.3s ease;
+        z-index: 10000;
+      }
+
+      .copy-indicator.show {
+        transform: translateX(-50%) translateY(0);
+      }
+
+      /* Breathing animation for highlight pills */
+      @keyframes breathe {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.02); }
+      }
+
+      .pill.highlight {
+        animation: breathe 3s ease-in-out infinite, subtlePulse 3s ease-in-out infinite;
+      }
     </style>
   </head>
   <body>
