@@ -1550,6 +1550,73 @@
         animation: pulseRing 0.6s ease-out forwards;
         z-index: 9999;
       }
+
+      /* Smooth scroll snap sections */
+      .scroll-container {
+        scroll-snap-type: y proximity;
+        overflow-y: scroll;
+        height: 100vh;
+      }
+
+      section {
+        scroll-snap-align: start;
+        scroll-margin-top: 20px;
+      }
+
+      /* Animated underline on section headers */
+      section h2 {
+        position: relative;
+        display: inline-block;
+      }
+
+      section h2::before {
+        content: '';
+        position: absolute;
+        bottom: -4px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: linear-gradient(90deg, var(--accent), var(--secondary));
+        transition: width 0.3s ease;
+      }
+
+      section:hover h2::before {
+        width: 100%;
+      }
+
+      /* Floating action indicator */
+      .scroll-indicator {
+        position: fixed;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        color: var(--muted);
+        font-size: var(--font-xs);
+        animation: bounce 2s ease-in-out infinite;
+        z-index: 100;
+        opacity: 1;
+        transition: opacity 0.3s;
+      }
+
+      .scroll-indicator.hidden {
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .scroll-indicator svg {
+        width: 24px;
+        height: 24px;
+        stroke: var(--accent);
+      }
+
+      @keyframes bounce {
+        0%, 100% { transform: translateX(-50%) translateY(0); }
+        50% { transform: translateX(-50%) translateY(-10px); }
+      }
     </style>
   </head>
   <body>
@@ -1561,6 +1628,14 @@
     <div class="orb orb-2"></div>
     <div class="orb orb-3"></div>
     <div class="morph-blob"></div>
+
+    <!-- Scroll indicator -->
+    <div class="scroll-indicator">
+      <span>Scroll</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M12 5v14M5 12l7 7 7-7"/>
+      </svg>
+    </div>
 
     <div class='page'>
       <header>
@@ -2248,6 +2323,16 @@
         ring.style.top = (e.clientY - 25) + 'px';
         document.body.appendChild(ring);
         setTimeout(() => ring.remove(), 600);
+      });
+
+      // ========== SCROLL INDICATOR ==========
+      const scrollIndicator = document.querySelector('.scroll-indicator');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 100) {
+          scrollIndicator.classList.add('hidden');
+        } else {
+          scrollIndicator.classList.remove('hidden');
+        }
       });
     </script>
   </body>
