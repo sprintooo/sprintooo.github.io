@@ -1010,6 +1010,23 @@
         position: relative;
       }
 
+      /* Animated wave above footer */
+      footer::after {
+        content: '';
+        position: absolute;
+        top: -30px;
+        left: 0;
+        right: 0;
+        height: 30px;
+        background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 30'%3E%3Cpath fill='rgba(56,189,248,0.1)' d='M0,15 C300,30 600,0 1200,15 L1200,30 L0,30 Z'/%3E%3C/svg%3E") repeat-x;
+        animation: waveMove 8s linear infinite;
+      }
+
+      @keyframes waveMove {
+        0% { background-position-x: 0; }
+        100% { background-position-x: 1200px; }
+      }
+
       /* Gradient top border for footer */
       footer::before {
         content: '';
