@@ -3396,6 +3396,21 @@
 
       typeEffect();
 
+      // ========== PARALLAX HEADER EFFECT ==========
+      const header = document.querySelector('header');
+      const nameEl = document.querySelector('.name');
+      const roleEl = document.querySelector('.role');
+
+      window.addEventListener('scroll', () => {
+        const scrolled = window.scrollY;
+        if (scrolled < 500) {
+          const opacity = 1 - (scrolled / 400);
+          const translateY = scrolled * 0.3;
+          header.style.transform = `translateY(${translateY}px)`;
+          header.style.opacity = Math.max(opacity, 0);
+        }
+      });
+
       // ========== MAGNETIC BUTTON EFFECT ==========
       document.querySelectorAll('nav a, .contact-links a, .pill').forEach(btn => {
         btn.addEventListener('mousemove', (e) => {
