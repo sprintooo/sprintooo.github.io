@@ -2392,17 +2392,35 @@
         transform: scale(1.2) rotate(10deg);
       }
 
-      /* Social icon colors on hover */
+      /* Social icon colors on hover - Neon glow effect */
       .contact-links a[href*="linkedin"]:hover {
         border-color: #0077b5;
         color: #0077b5;
-        box-shadow: 0 8px 25px -8px rgba(0, 119, 181, 0.4);
+        box-shadow:
+          0 0 20px rgba(0, 119, 181, 0.4),
+          0 0 40px rgba(0, 119, 181, 0.2),
+          0 0 60px rgba(0, 119, 181, 0.1),
+          inset 0 0 20px rgba(0, 119, 181, 0.1);
       }
 
       .contact-links a[href*="github"]:hover {
         border-color: #6e5494;
         color: #6e5494;
-        box-shadow: 0 8px 25px -8px rgba(110, 84, 148, 0.4);
+        box-shadow:
+          0 0 20px rgba(110, 84, 148, 0.4),
+          0 0 40px rgba(110, 84, 148, 0.2),
+          0 0 60px rgba(110, 84, 148, 0.1),
+          inset 0 0 20px rgba(110, 84, 148, 0.1);
+      }
+
+      .contact-links a[href*="mailto"]:hover {
+        border-color: #ef4444;
+        color: #ef4444;
+        box-shadow:
+          0 0 20px rgba(239, 68, 68, 0.4),
+          0 0 40px rgba(239, 68, 68, 0.2),
+          0 0 60px rgba(239, 68, 68, 0.1),
+          inset 0 0 20px rgba(239, 68, 68, 0.1);
       }
 
       .contact-links a[href*="mailto"]:hover {
